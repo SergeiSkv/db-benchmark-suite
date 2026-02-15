@@ -1,0 +1,41 @@
+# Binaries
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output files
+*.out
+coverage.out
+benchmark-results.md
+benchmark-results.json
+results.md
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Dependencies
+vendor/
+
+# Docker volumes
+postgres_data/
+mongo_data/
+cassandra_data/
+clickhouse_data/
+prometheus_data/
+grafana_data/

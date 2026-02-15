@@ -1,0 +1,147 @@
+version: "2"
+run:
+  modules-download-mode: readonly
+output:
+  path-prefix: ""
+linters:
+  enable:
+    - bodyclose
+    - dogsled
+    - exhaustive
+    - funlen
+    - goconst
+    - gocritic
+    - gocyclo
+    - goprintffuncname
+    - gosec
+    - lll
+    - misspell
+    - noctx
+    - revive
+    - staticcheck
+    - unconvert
+    - unparam
+    - asciicheck
+    - prealloc
+    - gocognit
+    - nakedret
+    - nestif
+    - wsl_v5
+    - nilnil
+    - errcheck
+    - errorlint
+    - makezero
+    - nilerr
+    - reassign
+    - dupl
+    - thelper
+    - tparallel
+    - usestdlibvars
+    - predeclared
+    - forcetypeassert
+    - copyloopvar
+    - musttag
+  disable:
+    - depguard
+    - gochecknoglobals
+    - godot
+    - godox
+    - testpackage
+    - wrapcheck
+  settings:
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+    gosec:
+      excludes:
+        - G202
+        - G204
+        - G404
+    funlen:
+      lines: 40
+      statements: 15
+    goconst:
+      min-len: 2
+      min-occurrences: 2
+    gocritic:
+      disabled-checks:
+        - dupImport
+        - octalLiteral
+        - whyNoLint
+        - wrapperFunc
+      enabled-tags:
+        - diagnostic
+        - experimental
+        - opinionated
+        - performance
+        - style
+    gocyclo:
+      min-complexity: 15
+    govet:
+      settings:
+        printf:
+          funcs:
+            - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
+            - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
+            - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
+            - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+    lll:
+      line-length: 160
+    misspell:
+      locale: US
+    nolintlint:
+      require-explanation: false
+      require-specific: false
+      allow-unused: false
+    whitespace:
+      multi-if: true
+      multi-func: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+    rules:
+      - linters:
+          - gocyclo
+          - lll
+          - funlen
+        path: _test\.go
+      - linters:
+          - funlen
+          - gocritic
+        text: 'unnecessaryDefer:'
+      - linters:
+          - revive
+        text: 'var-naming: avoid meaningless package names'
+      - linters:
+          - revive
+        text: 'package-comments:'
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - docs$
+severity:
+  default: error
+  rules:
+    - linters:
+        - dupl
+      severity: info
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/SergeiSkv
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+      - docs$
