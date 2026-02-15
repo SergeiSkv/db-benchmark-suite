@@ -18,7 +18,7 @@ Run the benchmarks yourself and verify the performance numbers:
 ### Requirements
 
 - Docker & Docker Compose
-- Go 1.22+
+- Go 1.25+
 - At least 4GB free RAM (8GB+ total recommended)
 - 50GB free disk space
 
@@ -126,8 +126,14 @@ make benchmark-clickhouse
 -skip-query
     Skip query benchmark
 
+-preload int
+    Pre-load database with N events before benchmarking (default 0, skip)
+
 -cleanup
     Cleanup data after benchmark
+
+-managed
+    Manage Docker containers automatically (start/stop per database)
 ```
 
 ## Output Formats
@@ -269,17 +275,6 @@ make coverage
 make lint
 ```
 
-## Monitoring
-
-Prometheus and Grafana are available as optional services:
-
-```bash
-docker-compose --profile monitoring up -d
-
-# Grafana: http://localhost:3000 (admin / admin)
-# Prometheus: http://localhost:9090
-```
-
 ## Troubleshooting
 
 ### Cassandra won't start
@@ -332,7 +327,7 @@ MIT License - free to use in your projects.
 
 - **Blog**: https://skoredin.pro
 - **Article**: https://skoredin.pro/blog/golang/sql-nosql-columnar-comparison
-- **Author**: [@skoredin](https://github.com/sergeiSkv)
+- **Author**: [@sergeiSkv](https://github.com/sergeiSkv)
 
 ## Credits
 
